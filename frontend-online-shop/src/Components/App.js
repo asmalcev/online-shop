@@ -6,6 +6,7 @@ import {
 } from "react-router-dom"
 import Sidebar from './Sidebar/Sidebar'
 import Catalog from './Catalog/Catalog'
+import CreateProduct from './CreateProduct/CreateProduct'
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
             Welcome to my online shop!
           </Route>
           <Route path="/new">
-            
+            <CreateProduct/>
           </Route>
           <Route path="/">
             <Catalog/>

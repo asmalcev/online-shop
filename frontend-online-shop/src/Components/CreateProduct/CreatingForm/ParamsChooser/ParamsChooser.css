@@ -1,0 +1,27 @@
+.params-list {
+  width: 60%;
+  min-width: 500px;
+  position: relative;
+  margin: 24px 0;
+}
+.params-list h3 {
+  margin: 24px 0 ;
+}
+.params-list button.add-param {
+  outline: none;
+  position: absolute;
+  top: -6px;
+  right: 10px;
+  cursor: pointer;
+
+  padding: 6px;
+  background-color: #fff;
+  border: 1px #222 solid;
+  border-radius: 4px;
+  
+  transition: 0.3s;
+}
+.params-list button.add-param:hover {
+  background-color: #222;
+  color: #fff;
+}

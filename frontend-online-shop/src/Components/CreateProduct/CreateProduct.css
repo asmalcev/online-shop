@@ -1,0 +1,22 @@
+.create-product {
+  padding: 36px;
+}
+
+.create-product input[type=submit] {
+  outline: none;
+  cursor: pointer;
+
+  padding: 6px;
+  background-color: #222;
+  border: 1px #222 solid;
+  border-radius: 4px;
+
+  color: #fff;
+  font-size: 18px;
+  
+  transition: 0.3s;
+}
+.create-product input[type=submit]:hover {
+  background-color: #fff;
+  color: #222;
+}

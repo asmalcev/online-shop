@@ -1,0 +1,47 @@
+.input-container {
+  position: relative;
+}
+
+.input-container:not(:first-child) {
+  margin-top: 10px;
+}
+
+.input-field {
+  outline: none;
+
+  width: 100%;
+  padding: 12px;
+  background-color: #fff;
+  border: 1px #222 solid;
+  border-radius: 5px;
+
+  color: #222;
+  font-size: 18px;
+}
+textarea.input-field {
+  resize: vertical;
+}
+
+.input-field::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.input-container .textholder {
+  position: absolute;
+  top: 12px;
+  left: 13px;
+
+  font-size: 18px;
+
+  transition: 0.3s;
+  user-select: none;
+}
+
+.input-field:not(:placeholder-shown) ~ .textholder {
+  top: -9px;
+  left: 7px;
+
+  background-color: #fff;
+
+  font-size: 14px;
+}
