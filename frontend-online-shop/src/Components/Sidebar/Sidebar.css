@@ -1,0 +1,63 @@
+nav {
+  padding: 24px;
+
+  box-shadow: 0 0 10px #0002;
+}
+
+nav h2 {
+  font-size: 32px;
+}
+
+nav ul {
+  margin: 24px 0;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+nav ul li a {
+  position: relative;
+  display: block;
+  padding: 6px;
+
+  color: #222;
+  font-size: 18px;
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #f1f1f1;
+}
+
+@keyframes slide {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  50% {
+    left: 0;
+    width: 100%;
+  }
+  100% {
+    left: 100%;
+    width: 0;
+  }
+}
+
+nav ul li a::before {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  background-color: #222;
+  height: 2px;
+}
+
+nav ul li a:hover::before {
+  animation: slide 1s;
+}

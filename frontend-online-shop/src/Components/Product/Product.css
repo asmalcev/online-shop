@@ -1,0 +1,47 @@
+.product {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  width: 20%;
+  max-width: 400px;
+  min-width: 300px;
+  height: 200px;
+  padding: 12px;
+  margin: 12px;
+
+  box-shadow: 0 0 10px #0002;
+
+  transition: 0.3s;
+}
+
+.product:hover {
+  box-shadow: 0 0 20px #0002;
+}
+
+.product p {
+  margin-top: 8px;
+}
+
+.product .params {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  padding: 12px;
+  background-color: #fffa;
+
+  box-shadow: 0 -5px 5px #00000007;
+}
+
+.product .params span {
+  padding: 4px;
+  margin: 0 4px;
+  border-radius: 4px;
+  background-color: #64b5f6;
+
+  color: #ffffff;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+}
