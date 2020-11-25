@@ -5,8 +5,25 @@ import ParamsChooser from './ParamsChooser/ParamsChooser'
 import './CreatingForm.css'
 
 function CreatingForm() {
+  const formHandler = e => {
+    e.preventDefault()
+
+    fetch('http://localhost:8080/create', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      mode: 'no-cors',
+      body: new FormData(e.target)
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data)
+      })
+  }
+  
   return (
-    <form className="creating-form">
+    <form className="creating-form" onSubmit={ formHandler }>
       <InputField
         id="name-field"
         type="text"

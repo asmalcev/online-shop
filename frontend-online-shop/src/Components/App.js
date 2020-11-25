@@ -6,6 +6,7 @@ import {
 } from "react-router-dom"
 import Sidebar from './Sidebar/Sidebar'
 import Catalog from './Catalog/Catalog'
+import About from './About/About'
 import CreateProduct from './CreateProduct/CreateProduct'
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
       <section>
         <Switch>
           <Route path="/about">
-            Welcome to my online shop!
+            <About/>
           </Route>
           <Route path="/new">
             <CreateProduct/>
