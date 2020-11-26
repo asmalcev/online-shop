@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 import InputField from './InputField/InputField'
 import ParamsChooser from './ParamsChooser/ParamsChooser'
+import Modal from '../../Modal/Modal'
 
 import './CreatingForm.css'
 
 function CreatingForm() {
+  const [ modalParams, setModalParams ] = useState({
+    msg: '',
+    title: '',
+    shown: false
+  })
+
   const formHandler = e => {
     e.preventDefault()
 
@@ -30,7 +38,17 @@ function CreatingForm() {
       },
       method: 'POST',
       body: JSON.stringify(data),
-    }).then(response => console.log(response.status))
+    }).then(response => {
+      setModalParams({
+        msg: response.status === 201 ? 'Product created' : 'Server error',
+        title: response.status,
+        shown: true
+      })
+    })
+    e.target.reset()
+    document.querySelectorAll('input[type=text]').forEach(input => {
+      input.value = ''
+    })
   }
   
   return (
@@ -49,6 +67,18 @@ function CreatingForm() {
       />
       <ParamsChooser/>
       <input type="submit" value="Create"/>
+      {
+        modalParams.shown &&
+        <Modal
+          closeModal={ setModalParams.bind(null, {
+            msg: '',
+            title: '',
+            shown: false
+          }) }
+          message={ modalParams.msg }
+          title={ modalParams.title }
+        />
+      }
     </form>
   )
 }

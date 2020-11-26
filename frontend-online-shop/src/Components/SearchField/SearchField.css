@@ -1,0 +1,12 @@
+.search-container {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 36px;
+  margin-bottom: 54px;
+}
+
+.search-container .input-field:not(:placeholder-shown) ~ .textholder {
+  top: 37px;
+  left: 50%;
+  transform: translateX(-50%);
+}

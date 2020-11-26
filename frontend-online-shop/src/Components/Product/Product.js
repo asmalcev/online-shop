@@ -12,9 +12,12 @@ function Product(props) {
     <div className="product">
       <h2>{props.name}</h2>
       <p>{props.description}</p>
-      <div className="params">
-        { tags }
-      </div>
+      {
+        !!tags.length && 
+        <div className="params">
+          { tags }
+        </div>
+      }
     </div>
   )
 }

@@ -25,7 +25,6 @@ function InputField(props) {
         />
       }
       <label htmlFor={ props.id } className="textholder">{ props.label }</label>
-      <p className="err-msg"></p>
     </div>
   )
 }
