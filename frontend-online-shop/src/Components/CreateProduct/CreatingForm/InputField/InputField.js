@@ -9,6 +9,7 @@ function InputField(props) {
         <textarea
           id={ props.id }
           placeholder={ props.label }
+          name={ props.name }
           className="input-field"
           required
         ></textarea>
@@ -17,6 +18,7 @@ function InputField(props) {
           id={ props.id }
           type={ props.type }
           placeholder={ props.label }
+          name={ props.name }
           className="input-field"
           autoComplete="off"
           required
