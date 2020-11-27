@@ -5,9 +5,18 @@ const router = express.Router()
 const Product = require('../model/Product.model')
 
 router.post('/', (req, res, next) => {
-  // console.log(req.body.request)
+  const request = req.body.request
+  let mongooseRequest
+  if (request === '') {
+    mongooseRequest = {}
+  } else {
+    mongooseRequest = { $or: [
+      { "name"       : { $regex: new RegExp(request), $options: 'i' } },
+      { "description" : { $regex: new RegExp(request), $options: 'i' } }
+    ]}
+  }
 
-  Product.find({}).exec().then(products => {
+  Product.find(mongooseRequest).exec().then(products => {
     res.status(200).json(products)
   }).catch(err => {
     console.err(err)

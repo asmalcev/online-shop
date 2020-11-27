@@ -9,33 +9,40 @@ class ProductList extends Component {
   constructor(props) {
     super(props)
     
-    this.state = {
-      gridContent: []
+    this.gotContent = false
+    this.gridContent = []
+    this.fillGrid = this.fillGrid.bind(this)
+    this.fillGridCallersInfo = {
+      func: null,
+      count: 0
     }
-    this.should = {
-      flag1: true,
-      flag2: true
-    }
-    this.flag = true
   }
 
-  fillGrid() {
+  fillGrid(CALLER_FUNC) {
+    if (this.fillGridCallersInfo.func === CALLER_FUNC) {
+      this.fillGridCallersInfo.count++
+    } else {
+      this.fillGridCallersInfo.count = 0
+    }
+    this.fillGridCallersInfo.func = CALLER_FUNC
     fetch('http://localhost:8080/find', {
+      headers: {
+        'Accept'       : 'application/json',
+        'Content-Type' : 'application/json'
+      },
       method: 'POST',
       body: JSON.stringify({ request: this.props.searchRequest })
     }).then(response => response.json())
       .then(data => {
         if (data.length === 0) {
-          this.setState({ gridContent:
+          this.gridContent =
             <p>
               There are not any products in the shop
               <br/>
               But you can add your <Link to="/new">New product</Link>
             </p>
-          })
-          this.flag = false
         } else {
-          this.setState({ gridContent:
+          this.gridContent =
             data.map(p => (
               <Product
                 key={ p._id }
@@ -44,42 +51,48 @@ class ProductList extends Component {
                 params={ p.params }
               />
             ))
-          })
-          this.flag = false
+        }
+        this.gotContent = true
+        if (CALLER_FUNC === 'MOUNT') {
+          this.forceUpdate()
+        } else if (CALLER_FUNC === 'UPDATE') {
+          if (this.fillGridCallersInfo.count <= 2) {
+            this.forceUpdate()
+          } else {
+            this.fillGridCallersInfo.count = 0
+          }
         }
       })
       .catch(() => {
-        this.setState({ gridContent:
+        this.gridContent =
           <p>
             Can't connect to the server
           </p>
-        })
-        this.flag = false
+        this.gotContent = true
+        if (CALLER_FUNC === 'MOUNT') {
+          this.forceUpdate()
+        }
       })
   }
 
   componentDidUpdate() {
-    console.log('--- did update')
-    this.fillGrid()
+    this.fillGrid('UPDATE')
   }
 
-  shouldComponentUpdate() {
-    console.log('--- should update')
-    return this.flag
-  }
-
-  componentDidMount() {
-    console.log('--- did mount')
-    this.fillGrid()
+  componentWillMount() {
+    this.fillGrid('MOUNT')
   }
 
   render() {
-    console.log('--- did render')
-    this.flag = true
-
     return (
       <div className="product-grid">
-        { this.state.gridContent }
+        {
+          this.gotContent ?
+          this.gridContent :
+          <div>
+            Loading...
+          </div>
+        }
       </div>
     )
   }
