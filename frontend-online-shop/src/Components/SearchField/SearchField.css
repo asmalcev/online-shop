@@ -1,12 +1,78 @@
 .search-container {
+  position: relative;
+  z-index: 2;
+  
   width: 50%;
   margin: 0 auto;
   margin-top: 36px;
   margin-bottom: 54px;
+
+  transition: 0.3s;
 }
 
 .search-container .input-field:not(:placeholder-shown) ~ .textholder {
-  top: 37px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 12px;
+  left: -100%;
+  font-size: 18px;
+}
+
+.search-container .input-field {
+  width: calc(100% - 54px);
+  border-radius: 16px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.search-container .extender {
+  position: relative;
+  float: right;
+  cursor: pointer;
+
+  width: 54px;
+  height: 48px;
+  background-color: #fff;
+  border: 1px #222 solid;
+  border-radius: 16px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: none;
+}
+.search-container .extender::before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 16px;
+
+  width: 16px;
+  height: 16px;
+  border: 1px #222 solid;
+  border-top: none;
+  border-left: none;
+
+  transform: rotate(45deg);
+  transition: 0.3s;
+}
+.search-container.extended .extender::before {
+  top: 19px;
+  transform: rotate(-135deg);
+}
+
+.search-container.extended {
+  margin-bottom:112px;
+}
+.search-container .extended-options {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  user-select: none;
+
+  width: 100%;
+  padding: 12px;
+  border: 1px #222 solid;
+  border-radius: 16px;
+
+  transition: 0.3s;
+}
+.search-container.extended .extended-options {
+  padding-top: 60px;
 }

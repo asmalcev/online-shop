@@ -5,10 +5,13 @@ import SearchField from '../SearchField/SearchField'
 import './Catalog.css'
 
 function Catalog() {
-  const [ searchRequest, setSearch ] = useState('')
+  const [ searchRequest, setSearchRequest ] = useState({
+    request: '',
+    extendedSearch: {}
+  })
 
   const searchFieldChange = value => {
-    setSearch(value)
+    setSearchRequest(value)
   }
 
   return (
